@@ -5,7 +5,6 @@ node('master'){
 	stage('Build & Unit test'){
 		withMaven(maven: 'MAVEN_HOME'){
 			'mvn clean verfiy -DskipITs=true';
-			junit 'target/surefire-reports/TESTS/*.xml'
 			archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
             
 
