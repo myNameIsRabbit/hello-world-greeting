@@ -19,7 +19,16 @@ node('master'){
     archiveArtifacts 'target/*.war'
 	}
    stage('Publish') {
-      junit '**/target/surefire-reports/TEST-*.xml'
-      archiveArtifacts 'target/*.war'
+     def server = Artifactory.server 'Default Artifactory Server'
+		 def uploadSpec = """{
+		 	"files": [
+				{
+					"pattern": "target/hello-0.0.1.war",
+					"target": "example-project/${BUILD_NUMBER}/",
+					"props": "Integration-Tested=Yes;Performance-Tested=No"
+				}
+			]
+		 }"""
+		 server.upload(uploadSpec)
    }
 }
