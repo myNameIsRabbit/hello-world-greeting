@@ -4,13 +4,13 @@ node('master'){
 	}
 	stage('Build & Unit test'){
 		withMaven(maven: 'MAVEN_HOME'){
-			'mvn clean verfiy -DskipITs=true';
-			archiveArtifacts artifacts: '/target/**/*.jar', fingerprint: true
-            
-
+			'mvn clean verfiy -DskipITs=true';          
 		}
-		
 	}
+	stage('Results') {
+      		junit '**/target/surefire-reports/TEST-*.xml'
+      		archive 'target/*.war'
+   	}
 	stage('Static Code Analysis'){
 		'mvn clean verfiy sonar:sonar -Dsonar.projectName=example-project -Dsonar.projectKey=example-project -Dsonar.projectVersion=$NUILD_NUMBER';
 	}
