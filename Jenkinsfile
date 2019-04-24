@@ -9,7 +9,7 @@ node('master'){
    	bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean verify/) 
    }
 	stage('Static Code Analysis'){
-		bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean verify sonar:sonar -Dsonar.projectName=example-project -Dsonar.projectKey=example-project -Dsonar.projectVersion=$NUILD_NUMBER';/)
+		bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean verify sonar:sonar -Dsonar.projectName=example-project -Dsonar.projectKey=example-project -Dsonar.projectVersion=$BUILD_NUMBER';/)
 	}
    stage('Results') {
       junit '**/target/surefire-reports/TEST-*.xml'
