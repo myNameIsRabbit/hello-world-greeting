@@ -2,10 +2,8 @@ node('master'){
 	def mvnHome
 	stage('Preparation') { // for display purposes     
       mvnHome = tool 'MAVEN_HOME'
+		  checkout scm
    }
-  stage('Poll'){
-		checkout scm
-	} 
 	stage('Build') {
       // Run the maven build
       if (isUnix()) {
