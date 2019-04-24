@@ -4,9 +4,11 @@ node('master'){
       mvnHome = tool 'MAVEN_HOME'
 		  checkout scm
    }
-	stage('Build') {
+	stage('Build & Unit Test') {
       // Run the maven build
    	bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean verify/) 
+		junit '**/target/surefire-reports/TEST-*.xml'
+    archiveArtifacts 'target/*.war'
    }
 	stage('Static Code Analysis'){
 		bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean verify sonar:sonar -Dsonar.projectName=example-project -Dsonar.projectKey=example-project -Dsonar.projectVersion=$BUILD_NUMBER';/)
@@ -16,7 +18,7 @@ node('master'){
 		junit '**/target/surefire-reports/TEST-*.xml'
     archiveArtifacts 'target/*.war'
 	}
-   stage('Results') {
+   stage('Publish') {
       junit '**/target/surefire-reports/TEST-*.xml'
       archiveArtifacts 'target/*.war'
    }
