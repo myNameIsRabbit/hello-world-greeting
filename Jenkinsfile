@@ -4,7 +4,7 @@ node('master'){
 	}
 	stage('Build & Unit test'){
 		'mvn clean verfiy -DskipITs=true';
-		junit '**target/surefire-reports/TEST-*.xml
+		junit '**target/surefire-reports/TEST-*.xml'
 	}
 	stage('Static Code Analysis'){
 		'mvn clean verfiy sonar:sonar -Dsonar.projectName=example-project -Dsonar.projectKey=example-project -Dsonar.projectVersion=$NUILD_NUMBER';
