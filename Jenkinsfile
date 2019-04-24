@@ -5,7 +5,7 @@ node('master'){
 	stage('Build & Unit test'){
 		withMaven(maven: 'MAVEN_HOME'){
 			'mvn clean verfiy -DskipITs=true';
-			archiveArtifacts artifacts: 'src/*.jar', fingerprint: true
+			archiveArtifacts artifacts: '/hello-world-greeting/target/*.jar', fingerprint: true
             
 
 		}
