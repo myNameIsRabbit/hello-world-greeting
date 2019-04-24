@@ -5,6 +5,7 @@ node('master'){
 	stage('Build & Unit test'){
 		withMaven(maven: 'MAVEN_HOME'){
 			'mvn clean verfiy -DskipITs=true';
+			archive '/target/*.jar'
 		}
 		
 	}
