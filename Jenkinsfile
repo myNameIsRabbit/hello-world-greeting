@@ -19,18 +19,21 @@ node('master'){
     archiveArtifacts 'target/*.war'
 	}
    stage('Publish') {
-	   nexusVersion('nexus3')
-		 protocol('http')
-		 nexusUrl('localhost:8081')
-		 groupID('sp.sd')
-		 version('0.0.1')
-		 repository('repository-example')
-		 credentialsId('nexus-credentials')
-		 artifact{
+		 nexusArtifactUploader{
+			nexusVersion('nexus3')
+		 	protocol('http')
+		  nexusUrl('localhost:8081')
+		  groupID('sp.sd')
+		  version('0.0.1')
+		  repository('repository-example')
+		  credentialsId('nexus-credentials')
+		  artifact{
 			 artifactId('Test')
        type('war')
        classifier('debug')
        file('target/hello-0.0.1.war')
+		  }
 		 }
+	   
    }  
 }
