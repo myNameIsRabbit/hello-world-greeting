@@ -52,7 +52,7 @@ node('master'){
                         [artifactId: pom.artifactId,
                         classifier: '',
                         file: artifactPath,
-                        type: pom.packaging],          
+                        type: pom.packaging]]          
                         );
   }  
 }
