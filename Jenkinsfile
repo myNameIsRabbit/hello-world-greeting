@@ -19,7 +19,6 @@ node('master'){
     archiveArtifacts 'target/*.war'
 	}
    stage('Publish') {
-		 nexusArtifactUploader{
-		}	   
+		    
   }  
 }
