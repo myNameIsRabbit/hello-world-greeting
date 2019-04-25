@@ -27,13 +27,6 @@ node('master'){
 		  version('0.0.1')
 		  repository('repository-example')
 		  credentialsId('nexus-credentials')
-		  artifact{
-			 artifactId('Test')
-       type('war')
-       classifier('debug')
-       file('target/hello-0.0.1.war')
-		  }
-		 }
-	   
-   }  
+		}	   
+  }  
 }
