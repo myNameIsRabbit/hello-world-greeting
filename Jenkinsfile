@@ -20,7 +20,6 @@ node('master'){
 	}
    stage('Publish') {
 		 nexusArtifactUploader{
-			nexusVersion('nexus3')
 		}	   
   }  
 }
