@@ -19,16 +19,10 @@ node('master'){
     archiveArtifacts 'target/*.war'
 	}
    stage('Publish') {
-     def server = Artifactory.server 'Default Artifactory Server'
-		 def uploadSpec = """{
-		 	"files": [
-				{
-					"pattern": "target/hello-0.0.1.war",
-					"target": "example-project/${BUILD_NUMBER}/",
-					"props": "Integration-Tested=Yes;Performance-Tested=No"
-				}
-			]
-		 }"""
-		 server.upload(uploadSpec)
-   }
+	   nexusVersion('nexus3')
+		 protocol('http')
+		 nexusUrl('localhost:8081')
+		 groupID('sp.sd')
+		 version('0.0.1')
+   }  
 }
