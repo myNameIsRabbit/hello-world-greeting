@@ -21,12 +21,6 @@ node('master'){
    stage('Publish') {
 		 nexusArtifactUploader{
 			nexusVersion('nexus3')
-		 	protocol('http')
-		  nexusUrl('localhost:8081')
-		  groupID('sp.sd')
-		  version('0.0.1')
-		  repository('repository-example')
-		  credentialsId('nexus-credentials')
 		}	   
   }  
 }
